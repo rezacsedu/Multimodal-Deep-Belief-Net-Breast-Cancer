@@ -3,15 +3,15 @@ Implementation of our paper titled "Multimodal Deep Belief Networks for Prognost
 
 In this implementation, both Deep Belief Networks (DBN) and multimodal Deep Belief Networks (mDBN) to predict the clinical status of breast cancer patients based on their genomics data. This mDBN model is trained with breast cancer genomics data from The Cancer Genome Atlas Breast Invasive Carcinoma (TCGA-BRCA). 
 
-### Predicted clinical status ###
+## Predicted clinical status
 1. Breast cancer subtypes which is determined by the estrogen receptor (ER), progesterone receptor (PGR), and HER2/neu status
 2. Survival rate (0-1, with 1 being the best chance of survival)
 
-### Requirements ###
+## Requirements
 * Python 2 or Python 3
 * Tensorflow and/or Theano.
 
-### I. Download and create the dataset ###
+## I. Download and create the dataset
 * Open the terminal.
 * Go to the main foler `cd mdbn_tcga_brca`.
 * Run the dataset creation program `python3 main_download.py -d DATASET_IDX`.
@@ -24,10 +24,10 @@ In this implementation, both Deep Belief Networks (DBN) and multimodal Deep Beli
 |           4 | Gene Expression + miRNA Expression                   |            10           |
 |           5 | DNA Methylation + Gene Expression + miRNA Expression |           162           |
 
-### II. Run the neural network ###
+## II. Train the neural networks
 * Open the terminal.
 * Go to the main foler `cd mdbn_tcga_brca`.
-* Run the neural networks program `python main_run.py <options>`.
+* Run the neural networks program `python main_run.py <options>`, with below supported options: 
 
 |               Option               |   Values   |                                                                                                                                                                                                                                                                                                                                                                                                              Details                                                                                                                                                                                            | Required |
 |-----------------------------------:|:-----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|
@@ -42,6 +42,121 @@ In this implementation, both Deep Belief Networks (DBN) and multimodal Deep Beli
 |                  --dropout DROPOUT | int        | Dropout rate. Default = 0.2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |    no    |
 |                          --pca PCA | int [1-2]  | [1] Use PCA<br>[2] Don't use PCA<br>Default = [2] Don't use                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |    no    |
 |              --optimizer OPTIMIZER | int [1-3]  | [1] Stochastic gradient descent<br>[2] RMSProp<br>[3] Adam<br>Default = [1] Stochastic gradient descent                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |    no    |
+
+## Example
+If we want to perform breast cancer subtype classification based on the dime sion reduced DNA methylation dataset using PCA on TensorFlow platform, one can issue the following command from the terminal: 
+`python3 main_run.py --platform 1 --type 1 --dataset 1 --batch 10 --pretrain_epoch 5 --train_epoch 5 --pca 1 --optimizer 3`
+
+In the preceding command, we define:
+-- 10 as the batch size
+-- 5 as the number of pretraining epoch
+-- 5 is the fine tuning epoch
+-- 3 is the idx for the Adam optimizer. 
+
+### Sample output: 
+Cancer Type Classification with DNA Methylation Platform GPL8490 (Tensorflow)
+
+
+ER Status Prediction
+
+[START] Pre-training step:
+>> Epoch 1 finished     RBM Reconstruction error 522.190925
+>> Epoch 2 finished     RBM Reconstruction error 497.765570
+>> Epoch 3 finished     RBM Reconstruction error 492.680869
+>> Epoch 4 finished     RBM Reconstruction error 494.515497
+>> Epoch 5 finished     RBM Reconstruction error 468.050771
+>> Epoch 1 finished     RBM Reconstruction error 2680.144531
+>> Epoch 2 finished     RBM Reconstruction error 2672.767578
+>> Epoch 3 finished     RBM Reconstruction error 2691.162842
+>> Epoch 4 finished     RBM Reconstruction error 2597.989502
+>> Epoch 5 finished     RBM Reconstruction error 2758.419678
+[END] Pre-training step
+[START] Fine tuning step:
+>> Epoch 0 finished     ANN training loss 0.610027
+>> Epoch 1 finished     ANN training loss 0.594821
+>> Epoch 2 finished     ANN training loss 0.568818
+>> Epoch 3 finished     ANN training loss 0.564796
+>> Epoch 4 finished     ANN training loss 0.558171
+[END] Fine tuning step
+Accuracy: 0.786260
+tAccuracy: 0.765306
+/home/karim/.local/lib/python3.5/site-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+Precision: 0.6182040673620418
+Recall: 0.7862595419847328
+F1-score: 0.6921772036275853
+tPrecision: 0.5856934610578924
+tRecall: 0.7653061224489796
+tF1-score: 0.6635602217765718
+Confusion matrix, without normalization
+ER Status Prediction is done in 8.28903828561306s
+
+PGR Status Prediction
+
+[START] Pre-training step:
+>> Epoch 1 finished     RBM Reconstruction error 422.876587
+>> Epoch 2 finished     RBM Reconstruction error 393.641800
+>> Epoch 3 finished     RBM Reconstruction error 377.866021
+>> Epoch 4 finished     RBM Reconstruction error 368.311999
+>> Epoch 5 finished     RBM Reconstruction error 380.356941
+>> Epoch 1 finished     RBM Reconstruction error 2793.383789
+>> Epoch 2 finished     RBM Reconstruction error 2742.516602
+>> Epoch 3 finished     RBM Reconstruction error 2704.654785
+>> Epoch 4 finished     RBM Reconstruction error 2839.105469
+>> Epoch 5 finished     RBM Reconstruction error 2749.048584
+[END] Pre-training step
+[START] Fine tuning step:
+>> Epoch 0 finished     ANN training loss 0.921267
+>> Epoch 1 finished     ANN training loss 0.662474
+>> Epoch 2 finished     ANN training loss 0.674687
+>> Epoch 3 finished     ANN training loss 0.669110
+>> Epoch 4 finished     ANN training loss 0.739354
+[END] Fine tuning step
+Accuracy: 0.694656
+tAccuracy: 0.659004
+Precision: 0.48254763708408605
+Recall: 0.6946564885496184
+F1-score: 0.5694931572794169
+tPrecision: 0.43428604982310887
+tRecall: 0.6590038314176245
+tF1-score: 0.5235503880084592
+Confusion matrix, without normalization
+PGR Status Prediction is done in 17.394772481173277s
+
+HER2 Status Prediction
+
+[START] Pre-training step:
+>> Epoch 1 finished     RBM Reconstruction error 309.675462
+>> Epoch 2 finished     RBM Reconstruction error 302.142036
+>> Epoch 3 finished     RBM Reconstruction error 294.692107
+>> Epoch 4 finished     RBM Reconstruction error 290.237393
+>> Epoch 5 finished     RBM Reconstruction error 289.501104
+>> Epoch 1 finished     RBM Reconstruction error 1846.207275
+>> Epoch 2 finished     RBM Reconstruction error 1806.483032
+>> Epoch 3 finished     RBM Reconstruction error 1898.162720
+>> Epoch 4 finished     RBM Reconstruction error 1902.564453
+>> Epoch 5 finished     RBM Reconstruction error 1867.702637
+[END] Pre-training step
+[START] Fine tuning step:
+>> Epoch 0 finished     ANN training loss 1.010514
+>> Epoch 1 finished     ANN training loss 0.988286
+>> Epoch 2 finished     ANN training loss 0.995581
+>> Epoch 3 finished     ANN training loss 0.987776
+>> Epoch 4 finished     ANN training loss 0.986907
+[END] Fine tuning step
+Accuracy: 0.613043
+tAccuracy: 0.612809
+Precision: 0.37582230623818524
+Recall: 0.6130434782608696
+F1-score: 0.4659791398101489
+tPrecision: 0.3755352576122584
+tRecall: 0.6128093158660844
+tF1-score: 0.46569083389823385
+Confusion matrix, without normalization
+HER2 Status Prediction is done in 25.29232906550169s
+
+Overall the program run for: 75.30784250423312s
+
 
 ### Special note ###
 If you already have the processed datasets without running the `main_download.py`, please add `MAIN_MDBN_TCGA_BRCA = "main_datasets_folder"` on the first line of these two files:
