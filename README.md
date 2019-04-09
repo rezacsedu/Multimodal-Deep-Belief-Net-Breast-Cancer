@@ -1,33 +1,32 @@
 # Multimodal Deep Belief Networks for Cancer Genomics
 Implementation of our paper titled "Multimodal Deep Belief Networks for Prognostically Relevant Subtypes and Survival Prediction for Breast Cancer" submitted to European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (aka. ECML-PKDD 2019).
 
-In this implementation, both Deep Belief Networks (DBN) and multimodal Deep Belief Networks (mDBN) to predict the clinical status of breast cancer patients based on their genomics data. This mDBN model is trained with breast cancer genomics data from The Cancer Genome Atlas Breast Invasive Carcinoma (TCGA-BRCA). 
+In this implementation, both Deep Belief Networks (DBN) and multimodal Deep Belief Networks (mDBN) are used to predict the clinical status of breast cancer patients based on their genomics data. This mDBN model is trained with breast cancer genomics data from The Cancer Genome Atlas Breast Invasive Carcinoma (TCGA-BRCA). 
 
 ## Predicted clinical status
 1. Breast cancer subtypes which is determined by the estrogen receptor (ER), progesterone receptor (PGR), and HER2/neu status
 2. Survival rate (0-1, with 1 being the best chance of survival)
 
 ## Requirements
-* Python 2 or Python 3
-* Tensorflow and/or Theano.
+* Python 3
+* TensorFlow and/or Theano.
 
-## I. Download and create the dataset
-* Open the terminal.
-* Go to the main foler `cd mdbn_tcga_brca`.
+## Download and create the dataset
+* Open the terminal
+* Clone the repo using `git clone https://github.com/rezacsedu/Multimodal-Deep-Belief-Net-Breast-Cancer.git`
 * Run the dataset creation program `python3 main_download.py -d DATASET_IDX`.
 
 | DATASET_IDX |                      Data Types                      | Space Requirements (GB) |
 |------------:|:-----------------------------------------------------|:-----------------------:|
-|           1 | DNA Methylation                                      |           148           |
-|           2 | Gene Expression                                      |            9            |
-|           3 | miRNA Expression                                     |           0.24          |
-|           4 | Gene Expression + miRNA Expression                   |            10           |
-|           5 | DNA Methylation + Gene Expression + miRNA Expression |           162           |
+|           1 | DNA Methylation                                      |          148            |
+|           2 | Gene Expression                                      |          9              |
+|           3 | miRNA Expression                                     |          0.24           |
+|           4 | Gene Expression + miRNA Expression                   |          10             |
+|           5 | DNA Methylation + Gene Expression + miRNA Expression |          162            |
 
-## II. Train the neural networks
-* Open the terminal.
-* Go to the main foler `cd mdbn_tcga_brca`.
-* Run the neural networks program `python main_run.py <options>`, with below supported options: 
+## Train the neural networks
+* Open the terminal
+* Run the neural networks program `python3 main_run.py <options>`, with the below supported options: 
 
 |               Option               |   Values   |                                                                                                                                                                                                                                                                                                                                                                                                              Details                                                                                                                                                                                            | Required |
 |-----------------------------------:|:-----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|
@@ -54,8 +53,7 @@ In the preceding command, we define:
 -- 3 is the idx for the Adam optimizer. 
 
 ### Sample output: 
-Cancer Type Classification with DNA Methylation Platform GPL8490 (Tensorflow)
-
+Cancer Type Classification with DNA Methylation Platform GPL8490 (TensorFlow)
 
 ER Status Prediction
 
@@ -80,8 +78,7 @@ ER Status Prediction
 [END] Fine tuning step
 Accuracy: 0.786260
 tAccuracy: 0.765306
-/home/karim/.local/lib/python3.5/site-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
-  'precision', 'predicted', average, warn_for)
+'precision', 'predicted', average, warn_for)
 Precision: 0.6182040673620418
 Recall: 0.7862595419847328
 F1-score: 0.6921772036275853
