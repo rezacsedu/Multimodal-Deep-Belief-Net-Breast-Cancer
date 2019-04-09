@@ -56,7 +56,7 @@ In the preceding command, we define:
 Cancer Type Classification with DNA Methylation Platform GPL8490 (TensorFlow)
 
     ER Status Prediction
-
+    -----------------------------
     [START] Pre-training step:
     >> Epoch 1 finished     RBM Reconstruction error 522.190925
     >> Epoch 2 finished     RBM Reconstruction error 497.765570
@@ -69,6 +69,7 @@ Cancer Type Classification with DNA Methylation Platform GPL8490 (TensorFlow)
     >> Epoch 4 finished     RBM Reconstruction error 2597.989502
     >> Epoch 5 finished     RBM Reconstruction error 2758.419678
     [END] Pre-training step
+    
     [START] Fine tuning step:
     >> Epoch 0 finished     ANN training loss 0.610027
     >> Epoch 1 finished     ANN training loss 0.594821
@@ -76,20 +77,14 @@ Cancer Type Classification with DNA Methylation Platform GPL8490 (TensorFlow)
     >> Epoch 3 finished     ANN training loss 0.564796
     >> Epoch 4 finished     ANN training loss 0.558171
     [END] Fine tuning step
+    
     Accuracy: 0.786260
-    tAccuracy: 0.765306
-    'precision', 'predicted', average, warn_for)
     Precision: 0.6182040673620418
     Recall: 0.7862595419847328
     F1-score: 0.6921772036275853
-    tPrecision: 0.5856934610578924
-    tRecall: 0.7653061224489796
-    tF1-score: 0.6635602217765718
-    Confusion matrix, without normalization
-    ER Status Prediction is done in 8.28903828561306s
 
     PGR Status Prediction
-
+    ---------------------------------
     [START] Pre-training step:
     >> Epoch 1 finished     RBM Reconstruction error 422.876587
     >> Epoch 2 finished     RBM Reconstruction error 393.641800
@@ -102,6 +97,7 @@ Cancer Type Classification with DNA Methylation Platform GPL8490 (TensorFlow)
     >> Epoch 4 finished     RBM Reconstruction error 2839.105469
     >> Epoch 5 finished     RBM Reconstruction error 2749.048584
     [END] Pre-training step
+    
     [START] Fine tuning step:
     >> Epoch 0 finished     ANN training loss 0.921267
     >> Epoch 1 finished     ANN training loss 0.662474
@@ -109,19 +105,14 @@ Cancer Type Classification with DNA Methylation Platform GPL8490 (TensorFlow)
     >> Epoch 3 finished     ANN training loss 0.669110
     >> Epoch 4 finished     ANN training loss 0.739354
     [END] Fine tuning step
+    
     Accuracy: 0.694656
-    tAccuracy: 0.659004
     Precision: 0.48254763708408605
     Recall: 0.6946564885496184
     F1-score: 0.5694931572794169
-    tPrecision: 0.43428604982310887
-    tRecall: 0.6590038314176245
-    tF1-score: 0.5235503880084592
-    Confusion matrix, without normalization
-    PGR Status Prediction is done in 17.394772481173277s
 
     HER2 Status Prediction
-
+    ------------------------------
     [START] Pre-training step:
     >> Epoch 1 finished     RBM Reconstruction error 309.675462
     >> Epoch 2 finished     RBM Reconstruction error 302.142036
@@ -134,6 +125,7 @@ Cancer Type Classification with DNA Methylation Platform GPL8490 (TensorFlow)
     >> Epoch 4 finished     RBM Reconstruction error 1902.564453
     >> Epoch 5 finished     RBM Reconstruction error 1867.702637
     [END] Pre-training step
+    
     [START] Fine tuning step:
     >> Epoch 0 finished     ANN training loss 1.010514
     >> Epoch 1 finished     ANN training loss 0.988286
@@ -141,19 +133,11 @@ Cancer Type Classification with DNA Methylation Platform GPL8490 (TensorFlow)
     >> Epoch 3 finished     ANN training loss 0.987776
     >> Epoch 4 finished     ANN training loss 0.986907
     [END] Fine tuning step
+    
     Accuracy: 0.613043
-    tAccuracy: 0.612809
+    Accuracy: 0.612809
     Precision: 0.37582230623818524
     Recall: 0.6130434782608696
-    F1-score: 0.4659791398101489
-    tPrecision: 0.3755352576122584
-    tRecall: 0.6128093158660844
-    tF1-score: 0.46569083389823385
-    Confusion matrix, without normalization
-    HER2 Status Prediction is done in 25.29232906550169s
-
-    Overall the program run for: 75.30784250423312s
-
 
 ### Special note ###
 If you already have the processed datasets without running the `main_download.py`, please add `MAIN_MDBN_TCGA_BRCA = "main_datasets_folder"` on the first line of these two files:
