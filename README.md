@@ -52,7 +52,7 @@ In the preceding command, we define:
 -- 5 is the fine tuning epoch
 -- 3 is the idx for the Adam optimizer. 
 
-### Sample output: 
+### Sample execution: 
 Cancer Type Classification with DNA Methylation Platform GPL8490 (TensorFlow)
 
 ER Status Prediction
